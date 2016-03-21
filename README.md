@@ -36,3 +36,39 @@ lipo -create export32/libapr-1.dylib export64/libapr-1.dylib -output export/liba
 file export/libapr-1.dylib 
 ```
 
+## Arm A9S - release
+./buildconf
+CC=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-gcc CXX=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-g++ LD=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ld CXXLD=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ld STRIP=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-strip AR=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ar AS=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-as NM=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-nm RANLIB=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ranlib OBJDUMP=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-objdump ./configure --prefix=`pwd`/../apr-1.5.2-exports/linux-arm-a9s --host=arm-linux-gnueabi CFLAGS="-fPIC -pipe -mfpu=neon -funroll-loops -marm -march=armv7-a -mtune=cortex-a9"  \
+ac_cv_file__dev_zero="yes" \
+ac_cv_func_setpgrp_void="yes" \
+apr_cv_process_shared_works="yes" \
+apr_cv_mutex_robust_shared="no" \
+apr_cv_tcp_nodelay_with_cork="yes" \
+ac_cv_sizeof_struct_iovec="8" \
+apr_cv_mutex_recursive="yes"
+
+./libtool --mode=compile gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include  -I./include/arch/unix -I./include/private  -o tools/gen_test_char.lo -c tools/gen_test_char.c && touch tools/gen_test_char.lo
+
+./libtool --mode=link gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include -I./include/arch/unix -I./include/private -no-install -o tools/gen_test_char tools/gen_test_char.lo    -lrt -lcrypt  -ldl
+
+make
+make install
+
+## Arm A9S - debug
+./buildconf
+CC=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-gcc CXX=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-g++ LD=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ld CXXLD=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ld STRIP=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-strip AR=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ar AS=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-as NM=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-nm RANLIB=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-ranlib OBJDUMP=/opt/BUILD_TOOLS/arm-a9s/bin/arm-linux-gnueabihf-objdump ./configure --prefix=`pwd`/../apr-1.5.2-exports/linux-arm-a9s-debug --host=arm-linux-gnueabi --enable-debug CFLAGS="-fPIC -pipe -mfpu=neon -funroll-loops -marm -march=armv7-a -mtune=cortex-a9"  \
+ac_cv_file__dev_zero="yes" \
+ac_cv_func_setpgrp_void="yes" \
+apr_cv_process_shared_works="yes" \
+apr_cv_mutex_robust_shared="no" \
+apr_cv_tcp_nodelay_with_cork="yes" \
+ac_cv_sizeof_struct_iovec="8" \
+apr_cv_mutex_recursive="yes"
+
+./libtool --mode=compile gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include  -I./include/arch/unix -I./include/private  -o tools/gen_test_char.lo -c tools/gen_test_char.c && touch tools/gen_test_char.lo
+
+./libtool --mode=link gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include -I./include/arch/unix -I./include/private -no-install -o tools/gen_test_char tools/gen_test_char.lo    -lrt -lcrypt  -ldl
+
+make
+make install
+
