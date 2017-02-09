@@ -72,3 +72,23 @@ apr_cv_mutex_recursive="yes"
 make
 make install
 
+## Arm ep - Chopes
+```
+./buildconf
+CC=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc CXX=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ LD=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-ld CXXLD=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-ld STRIP=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-strip AR=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-ar AS=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-as NM=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-nm RANLIB=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-ranlib OBJDUMP=/root/CHP_SDK/cross_compile/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-objdump ./configure --prefix=`pwd`/../apr-1.5.2-exports/linux-arm-ep --host=arm-poky-linux-gnueabi --with-sysroot=/root/CHP_SDK/sysroot CFLAGS="-fPIC -pipe -funroll-loops --sysroot=/root/CHP_SDK/sysroot"  \
+ac_cv_file__dev_zero="yes" \
+ac_cv_func_setpgrp_void="yes" \
+apr_cv_process_shared_works="yes" \
+apr_cv_mutex_robust_shared="no" \
+apr_cv_tcp_nodelay_with_cork="yes" \
+ac_cv_sizeof_struct_iovec="8" \
+apr_cv_mutex_recursive="yes"
+
+./libtool --mode=compile gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include  -I./include/arch/unix -I./include/private  -o tools/gen_test_char.lo -c tools/gen_test_char.c && touch tools/gen_test_char.lo
+
+./libtool --mode=link gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include -I./include/arch/unix -I./include/private -no-install -o tools/gen_test_char tools/gen_test_char.lo    -lrt -lcrypt  -ldl
+
+make
+make install
+```
+
