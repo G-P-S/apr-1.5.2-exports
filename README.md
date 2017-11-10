@@ -92,3 +92,22 @@ make
 make install
 ```
 
+## arm-a53 - Tasmania
+```
+./buildconf
+CC=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-gcc CXX=//opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-g++ LD=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-ld CXXLD=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-ld STRIP=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-strip AR=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-ar AS=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-as NM=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-nm RANLIB=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-ranlib OBJDUMP=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-objdump ./configure --prefix=`pwd`/../apr-1.5.2-exports/linux-arm-a53 --host=arm-oemllib32-linux-gnueabi --with-sysroot=/opt/tas_sdk/sysroots CFLAGS="-fPIC -pipe -funroll-loops --sysroot=/opt/tas_sdk/sysroots"  \
+ac_cv_file__dev_zero="yes" \
+ac_cv_func_setpgrp_void="yes" \
+apr_cv_process_shared_works="yes" \
+apr_cv_mutex_robust_shared="no" \
+apr_cv_tcp_nodelay_with_cork="yes" \
+ac_cv_sizeof_struct_iovec="8" \
+apr_cv_mutex_recursive="yes"
+
+./libtool --mode=compile gcc -g -O2   -DHAVE_CONFIG_H  -DLINUX -D_REENTRANT -D_GNU_SOURCE   -I./include  -I./include/arch/unix -I./include/private  -o tools/gen_test_char.lo -c tools/gen_test_char.c && touch tools/gen_test_char.lo; 
+./libtool --mode=link gcc -g -O2 -DHAVE_CONFIG_H -DLINUX -D_REENTRANT -D_GNU_SOURCE -I./include -I./include/arch/unix -I./include/private -no-install -o tools/gen_test_char tools/gen_test_char.lo -lrt -lcrypt  -ldl
+
+make
+make install
+```
+
