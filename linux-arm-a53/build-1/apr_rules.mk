@@ -32,7 +32,7 @@ top_builddir=/home/jconner/Repos/cah-test/3rdparty/apr/../apr-1.5.2-exports/linu
 APR_MAJOR_VERSION=1
 APR_DOTTED_VERSION=1.5.2
 
-CC=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-gcc
+CC=/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-gcc
 RM=rm
 AWK=gawk
 SHELL=/bin/sh
@@ -41,7 +41,7 @@ LIBTOOL=$(SHELL) $(apr_builddir)/libtool
 # compilation and linking flags that are supposed to be set only by the user.
 # configure adds to them for tests, but we restore them at the end.
 #
-CFLAGS=-fPIC -pipe -funroll-loops --sysroot=/opt/tas_sdk/sysroots
+CFLAGS=-fPIC -pipe -funroll-loops --sysroot=/opt/tas_sdk/sysroots/apq8053-32
 CPPFLAGS=
 LDFLAGS=
 LIBS=
