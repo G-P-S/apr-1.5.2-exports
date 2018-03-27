@@ -30,7 +30,7 @@ datadir="${prefix}"
 installbuilddir="${prefix}/build-1"
 includedir="${prefix}/include/apr-${APR_MAJOR_VERSION}"
 
-CC="/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oemllib32-linux-gnueabi/arm-oemllib32-linux-gnueabi-gcc"
+CC="/opt/tas_sdk/sysroots/x86_64-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-gcc"
 CPP="/lib/cpp"
 SHELL="/bin/sh"
 CPPFLAGS="-DLINUX -D_REENTRANT -D_GNU_SOURCE"
